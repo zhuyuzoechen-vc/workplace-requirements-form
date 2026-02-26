@@ -694,6 +694,49 @@
     font-size: 13.5px;
   }
 
+
+  .autosave-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.45);
+    transition: color 0.3s;
+  }
+  .autosave-status.saving { color: var(--gold); }
+  .autosave-status.saved { color: rgba(255,255,255,0.55); }
+  .autosave-status svg { width: 12px; height: 12px; flex-shrink: 0; }
+  .resume-banner {
+    display: none;
+    background: var(--gold);
+    color: #1C1A17;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    align-items: center;
+    gap: 12px;
+  }
+  .resume-banner.visible { display: flex; }
+  .resume-banner svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .resume-banner-text { flex: 1; line-height: 1.4; }
+  .resume-banner-text small { display: block; font-weight: 400; font-size: 12px; opacity: 0.7; margin-top: 2px; }
+  .resume-dismiss {
+    background: rgba(0,0,0,0.15);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #1C1A17;
+    white-space: nowrap;
+  }
+  .resume-dismiss:hover { background: rgba(0,0,0,0.25); }
+
   @media (max-width: 900px) {
     .shell { grid-template-columns: 1fr; }
     .sidebar { display: none; }
@@ -757,6 +800,10 @@
       <div class="progress-bar-track">
         <div class="progress-bar-fill" id="progress-bar"></div>
       </div>
+      <div class="autosave-status saved" id="autosave-status">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        <span id="autosave-text">Progress saved locally</span>
+      </div>
     </div>
   </aside>
 
@@ -765,6 +812,14 @@
 
     <!-- WELCOME -->
     <div class="section-panel active" id="panel-welcome">
+      <div class="resume-banner" id="resume-banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div class="resume-banner-text">
+          You have saved progress from a previous session.
+          <small id="resume-saved-time">Your answers have been restored.</small>
+        </div>
+        <button class="resume-dismiss" onclick="clearSavedProgress()">Start fresh</button>
+      </div>
       <div class="welcome-hero">
         <div class="welcome-eyebrow">Workplace for Tomorrow</div>
         <div class="welcome-title">Special Requirements<br>Deep Dive</div>
@@ -1559,9 +1614,89 @@ function updateProgress() {
   document.getElementById('progress-label').textContent = `${done} of ${total} sections complete`;
 }
 
+const ALL_FIELDS = [
+  'g-dept','g-role','g-location','g-headcount','g-setup','g-split','g-nolaptop',
+  's1-desc','s1-vol','s1-people','s1-space','s1-driver',
+  's2-desc','s2-type','s2-vol','s2-freq','s2-security','s2-driver',
+  's3-desc','s3-people','s3-driver','s3-it',
+  's4-desc','s4-reg','s4-adj',
+  's5-desc','s5-cap','s5-freq','s5-av','s5-ded',
+  's6-desc','s6-size','s6-freq','s6-hybrid',
+  's7-desc','s7-people','s7-confirm',
+  's8-desc','s8-driver','s8-people'
+];
+const STORAGE_KEY = 'wft_special_req_v1';
+let autosaveTimer = null;
+
 function autosave() {
-  // Could hook into localStorage or POST; for now just a stub
+  const status = document.getElementById('autosave-status');
+  const text = document.getElementById('autosave-text');
+  if (status) { status.className = 'autosave-status saving'; text.textContent = 'Saving...'; }
+  clearTimeout(autosaveTimer);
+  autosaveTimer = setTimeout(() => {
+    const data = { savedAt: new Date().toISOString(), fields: {}, gates: { ...state.gates }, completed: [...state.completed] };
+    ALL_FIELDS.forEach(id => { const el = document.getElementById(id); if (el) data.fields[id] = el.value; });
+    data.s4_checkboxes = [...document.querySelectorAll('#s4-type-group input')].map(el => el.checked);
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+    if (status) { status.className = 'autosave-status saved'; text.textContent = 'Progress saved'; }
+  }, 800);
 }
+
+function restoreProgress() {
+  let saved;
+  try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch(e) { return; }
+  if (!saved) return;
+  ALL_FIELDS.forEach(id => { const el = document.getElementById(id); if (el && saved.fields && saved.fields[id] !== undefined) el.value = saved.fields[id]; });
+  if (saved.s4_checkboxes) {
+    const boxes = document.querySelectorAll('#s4-type-group input');
+    boxes.forEach((el, i) => { if (saved.s4_checkboxes[i] !== undefined) el.checked = saved.s4_checkboxes[i]; });
+  }
+  if (saved.gates) { Object.entries(saved.gates).forEach(([t, v]) => setGate(t, v)); }
+  if (saved.completed) {
+    saved.completed.forEach(s => {
+      state.completed.add(s);
+      if (s === 'group') { const n = document.getElementById('n-group'); if (n) { n.textContent = '\u2713'; n.style.background = 'rgba(200,169,110,0.8)'; } }
+      else updateSidebarNum(s);
+    });
+    updateProgress();
+  }
+  const banner = document.getElementById('resume-banner');
+  if (banner && saved.savedAt) {
+    const d = new Date(saved.savedAt);
+    const friendly = d.toLocaleDateString(undefined, {weekday:'short',month:'short',day:'numeric'}) + ' at ' + d.toLocaleTimeString(undefined, {hour:'2-digit',minute:'2-digit'});
+    const timeEl = document.getElementById('resume-saved-time');
+    if (timeEl) timeEl.textContent = 'Last saved: ' + friendly;
+    banner.classList.add('visible');
+  }
+  const t = document.getElementById('autosave-text');
+  if (t) t.textContent = 'Progress restored';
+}
+
+function clearSavedProgress() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  document.getElementById('resume-banner')?.classList.remove('visible');
+  ALL_FIELDS.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  document.querySelectorAll('#s4-type-group input').forEach(el => el.checked = false);
+  ['s1','s2','s3','s4','s5','s6','s7','s8'].forEach(t => {
+    delete state.gates[t];
+    document.getElementById(t+'-yes')?.setAttribute('class','gate-btn');
+    document.getElementById(t+'-no')?.setAttribute('class','gate-btn');
+    document.getElementById(t+'-form')?.classList.remove('visible');
+    document.getElementById(t+'-noexception')?.classList.remove('visible');
+    const num = document.getElementById('n-'+t);
+    if (num) { num.textContent = t.replace('s',''); num.style.background = ''; }
+  });
+  state.completed.clear();
+  updateProgress();
+  const gNum = document.getElementById('n-group');
+  if (gNum) { gNum.textContent = '0'; gNum.style.background = ''; }
+  const st = document.getElementById('autosave-text');
+  if (st) st.textContent = 'Progress cleared';
+}
+
+function clearAfterSubmit() { try { localStorage.removeItem(STORAGE_KEY); } catch(e) {} }
+
+document.addEventListener('DOMContentLoaded', restoreProgress);
 
 function val(id) {
   const el = document.getElementById(id);
@@ -1704,6 +1839,7 @@ async function submitForm() {
     console.error('Submission error:', err);
   }
 
+  clearAfterSubmit();
   document.getElementById('panel-summary').classList.remove('active');
   document.getElementById('submitted').classList.add('visible');
   currentSection = 'submitted';
