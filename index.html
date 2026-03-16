@@ -106,6 +106,103 @@
     font-size: 13.5px;
   }
 
+  /* ── Passphrase gate ── */
+  #passphrase-gate {
+    position: fixed;
+    inset: 0;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 24px;
+  }
+
+  #passphrase-gate.hidden { display: none; }
+
+  .gate-box {
+    background: white;
+    border-radius: 16px;
+    padding: 48px 44px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.25);
+  }
+
+  .gate-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .gate-logo span { color: var(--orange); }
+
+  .gate-sub {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 36px;
+  }
+
+  .gate-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .gate-desc {
+    font-size: 14.5px;
+    color: var(--ink-muted);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  .gate-input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .gate-input:focus { border-color: var(--accent); }
+  .gate-input.error { border-color: var(--warning); }
+
+  .gate-error {
+    font-size: 13px;
+    color: var(--warning);
+    margin-bottom: 16px;
+    min-height: 20px;
+  }
+
+  .gate-btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .gate-btn-submit:hover { background: var(--accent-mid); }
+
   .nav-item:hover { background: rgba(255,255,255,0.1); color: white; }
   .nav-item.active { background: rgba(255,255,255,0.15); color: white; font-weight: 500; }
   .nav-item.completed .nav-num { background: var(--orange); color: white; }
@@ -782,6 +879,19 @@
 </style>
 </head>
 <body>
+
+<!-- Passphrase gate -->
+<div id="passphrase-gate">
+  <div class="gate-box">
+    <div class="gate-logo">NXP <span>Austin</span></div>
+    <div class="gate-sub">Special Requirements Deep Dive</div>
+    <div class="gate-heading">Enter access code</div>
+    <div class="gate-desc">This form is restricted to invited participants. Please enter the access code provided by your project team.</div>
+    <input class="gate-input" id="gate-input" type="password" placeholder="Access code" autocomplete="off" />
+    <div class="gate-error" id="gate-error"></div>
+    <button class="gate-btn-submit" onclick="checkPassphrase()">Continue →</button>
+  </div>
+</div>
 
 <div class="shell">
 
@@ -1737,7 +1847,34 @@ function clearSavedProgress() {
 
 function clearAfterSubmit() { try { localStorage.removeItem(STORAGE_KEY); } catch(e) {} }
 
-document.addEventListener('DOMContentLoaded', restoreProgress);
+
+// ── Passphrase gate ──
+function checkPassphrase() {
+  const input = document.getElementById('gate-input');
+  const error = document.getElementById('gate-error');
+  if (input.value.trim().toLowerCase() === 'champion') {
+    document.getElementById('passphrase-gate').classList.add('hidden');
+    input.classList.remove('error');
+    error.textContent = '';
+  } else {
+    input.classList.add('error');
+    error.textContent = 'Incorrect access code. Please check with your project team.';
+    input.value = '';
+    input.focus();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const input = document.getElementById('gate-input');
+  if (input) {
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPassphrase();
+    });
+    input.focus();
+  }
+});
+
+
 
 function val(id) {
   const el = document.getElementById(id);
