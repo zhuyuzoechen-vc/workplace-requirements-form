@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workplace Special Requirements — Deep Dive</title>
+<title>NXP Austin — Special Requirements Deep Dive</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #F7F5F0;
+    --bg: #F5F7FA;
     --surface: #FFFFFF;
-    --ink: #1C1A17;
-    --ink-muted: #6B6760;
-    --accent: #1A4C3B;
-    --accent-light: #E8F0ED;
-    --accent-mid: #2E7D60;
-    --warning: #B85042;
+    --ink: #0A1628;
+    --ink-muted: #5A6070;
+    --accent: #002B5C;
+    --accent-light: #EBF0F8;
+    --accent-mid: #1F4D8C;
+    --warning: #C0392B;
     --warning-light: #FDF0EE;
-    --border: #DDD9D2;
-    --gold: #C8A96E;
-    --tag-standard: #2E7D60;
-    --tag-exception: #B85042;
+    --border: #D9DFE8;
+    --orange: #FF6600;
+    --orange-light: #FFF4EC;
+    --tag-standard: #1F4D8C;
+    --tag-exception: #C0392B;
     --radius: 12px;
     --radius-sm: 6px;
-    --shadow: 0 2px 12px rgba(28,26,23,0.06), 0 1px 3px rgba(28,26,23,0.08);
+    --shadow: 0 2px 12px rgba(0,43,92,0.07), 0 1px 3px rgba(0,43,92,0.09);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,8 +62,12 @@
     font-size: 20px;
     color: white;
     line-height: 1.2;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     letter-spacing: -0.3px;
+  }
+
+  .sidebar-logo-orange {
+    color: var(--orange);
   }
 
   .sidebar-sub {
@@ -103,8 +108,8 @@
 
   .nav-item:hover { background: rgba(255,255,255,0.1); color: white; }
   .nav-item.active { background: rgba(255,255,255,0.15); color: white; font-weight: 500; }
-  .nav-item.completed .nav-num { background: var(--gold); color: var(--accent); }
-  .nav-item.has-exceptions .nav-num { background: #B85042; }
+  .nav-item.completed .nav-num { background: var(--orange); color: white; }
+  .nav-item.has-exceptions .nav-num { background: #C0392B; }
 
   .nav-num {
     width: 22px;
@@ -147,7 +152,7 @@
 
   .progress-bar-fill {
     height: 100%;
-    background: var(--gold);
+    background: var(--orange);
     border-radius: 999px;
     transition: width 0.3s ease;
     width: 0%;
@@ -209,7 +214,7 @@
   /* ── Standard solution card ── */
   .standard-card {
     background: var(--accent-light);
-    border: 1px solid #C8DDD6;
+    border: 1px solid #C0CFDF;
     border-radius: var(--radius);
     padding: 24px 28px;
     margin-bottom: 28px;
@@ -238,7 +243,6 @@
   .standard-card-title {
     font-weight: 600;
     font-size: 13px;
-    letter-spacing: 0.3px;
     color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -246,7 +250,7 @@
 
   .standard-card p {
     font-size: 14.5px;
-    color: #2C5C4A;
+    color: #1D3A68;
     line-height: 1.65;
     margin-bottom: 8px;
   }
@@ -260,7 +264,7 @@
 
   .standard-bullets li {
     font-size: 14px;
-    color: #2C5C4A;
+    color: #1D3A68;
     padding: 3px 0 3px 18px;
     position: relative;
     line-height: 1.5;
@@ -390,8 +394,8 @@
   .form-input:focus,
   .form-textarea:focus,
   .form-select:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(26,76,59,0.08);
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(255,102,0,0.1);
   }
 
   .form-textarea {
@@ -418,7 +422,7 @@
     align-items: center;
     gap: 10px;
     background: var(--accent-light);
-    border: 1px solid #C8DDD6;
+    border: 1px solid #C0CFDF;
     border-radius: var(--radius-sm);
     padding: 12px 16px;
     margin-top: 20px;
@@ -464,11 +468,11 @@
   .btn-outline:hover { border-color: var(--ink); color: var(--ink); }
 
   .btn-primary {
-    background: var(--accent);
+    background: var(--orange);
     color: white;
   }
 
-  .btn-primary:hover { background: #163D2F; }
+  .btn-primary:hover { background: #E05800; }
 
   .btn svg { width: 16px; height: 16px; }
 
@@ -502,7 +506,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 16px 22px;
-    background: #FAFAF8;
+    background: #F5F7FA;
     border-bottom: 1px solid var(--border);
   }
 
@@ -554,7 +558,7 @@
     padding: 16px;
     font-size: 16px;
     border-radius: 10px;
-    background: var(--accent);
+    background: var(--orange);
     color: white;
     border: none;
     font-family: 'DM Sans', sans-serif;
@@ -564,11 +568,11 @@
     transition: background 0.15s;
   }
 
-  .submit-btn:hover { background: #163D2F; }
+  .submit-btn:hover { background: #E05800; }
 
   /* ── Welcome panel ── */
   .welcome-hero {
-    background: var(--ink);
+    background: var(--accent);
     border-radius: 16px;
     padding: 52px 48px;
     color: white;
@@ -582,7 +586,7 @@
     position: absolute;
     top: -60px; right: -60px;
     width: 280px; height: 280px;
-    background: radial-gradient(circle, rgba(200,169,110,0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,102,0,0.18) 0%, transparent 70%);
   }
 
   .welcome-eyebrow {
@@ -590,7 +594,7 @@
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--orange);
     margin-bottom: 16px;
   }
 
@@ -635,8 +639,8 @@
   }
 
   .welcome-card-icon svg { width: 18px; height: 18px; }
-  .icon-green { background: var(--accent-light); color: var(--accent); }
-  .icon-amber { background: #FEF3E2; color: #9B6700; }
+  .icon-blue { background: var(--accent-light); color: var(--accent); }
+  .icon-orange { background: var(--orange-light); color: var(--orange); }
   .icon-red { background: var(--warning-light); color: var(--warning); }
 
   .welcome-card h4 {
@@ -664,7 +668,7 @@
   .submitted-icon {
     width: 72px;
     height: 72px;
-    background: var(--accent-light);
+    background: var(--orange-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -672,7 +676,7 @@
     margin: 0 auto 24px;
   }
 
-  .submitted-icon svg { width: 32px; height: 32px; color: var(--accent); }
+  .submitted-icon svg { width: 32px; height: 32px; color: var(--orange); }
 
   .submitted-state h2 {
     font-family: 'DM Serif Display', serif;
@@ -694,7 +698,6 @@
     font-size: 13.5px;
   }
 
-
   .autosave-status {
     display: flex;
     align-items: center;
@@ -704,13 +707,14 @@
     color: rgba(255,255,255,0.45);
     transition: color 0.3s;
   }
-  .autosave-status.saving { color: var(--gold); }
+  .autosave-status.saving { color: var(--orange); }
   .autosave-status.saved { color: rgba(255,255,255,0.55); }
   .autosave-status svg { width: 12px; height: 12px; flex-shrink: 0; }
+
   .resume-banner {
     display: none;
-    background: var(--gold);
-    color: #1C1A17;
+    background: var(--orange);
+    color: white;
     border-radius: var(--radius);
     padding: 16px 20px;
     margin-bottom: 24px;
@@ -722,9 +726,9 @@
   .resume-banner.visible { display: flex; }
   .resume-banner svg { width: 20px; height: 20px; flex-shrink: 0; }
   .resume-banner-text { flex: 1; line-height: 1.4; }
-  .resume-banner-text small { display: block; font-weight: 400; font-size: 12px; opacity: 0.7; margin-top: 2px; }
+  .resume-banner-text small { display: block; font-weight: 400; font-size: 12px; opacity: 0.8; margin-top: 2px; }
   .resume-dismiss {
-    background: rgba(0,0,0,0.15);
+    background: rgba(255,255,255,0.25);
     border: none;
     border-radius: 6px;
     padding: 6px 12px;
@@ -732,10 +736,40 @@
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
-    color: #1C1A17;
+    color: white;
     white-space: nowrap;
   }
-  .resume-dismiss:hover { background: rgba(0,0,0,0.25); }
+  .resume-dismiss:hover { background: rgba(255,255,255,0.35); }
+
+  /* ── Security zone badge ── */
+  .zone-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .zone-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .zone-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .zone-1 { background: #E8F4FD; color: #1565C0; }
+  .zone-1 .zone-dot { background: #1565C0; }
+  .zone-2 { background: #E8F5E9; color: #2E7D32; }
+  .zone-2 .zone-dot { background: #2E7D32; }
+  .zone-3 { background: #FFF9C4; color: #F57F17; }
+  .zone-3 .zone-dot { background: #F9A825; }
+  .zone-4 { background: #FFEBEE; color: #C62828; }
+  .zone-4 .zone-dot { background: #C62828; }
 
   @media (max-width: 900px) {
     .shell { grid-template-columns: 1fr; }
@@ -743,6 +777,7 @@
     .main { padding: 36px 24px; }
     .welcome-cards { grid-template-columns: 1fr; }
     .form-grid-2 { grid-template-columns: 1fr; }
+    .zone-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -752,7 +787,7 @@
 
   <!-- ── Sidebar ── -->
   <aside class="sidebar">
-    <div class="sidebar-logo">Workplace<br>Deep Dive</div>
+    <div class="sidebar-logo"><span class="sidebar-logo-orange">NXP</span> Austin<br>Austin_Next</div>
     <div class="sidebar-sub">Special Requirements</div>
 
     <nav class="sidebar-nav">
@@ -821,10 +856,10 @@
         <button class="resume-dismiss" onclick="clearSavedProgress()">Start fresh</button>
       </div>
       <div class="welcome-hero">
-        <div class="welcome-eyebrow">Workplace for Tomorrow</div>
+        <div class="welcome-eyebrow">NXP Austin · Austin_Next Program</div>
         <div class="welcome-title">Special Requirements<br>Deep Dive</div>
-        <div class="welcome-body">This form will guide your team through each workspace topic, show you what the standard solution already provides, and capture only the requirements that are genuinely unique to your team.</div>
-        <button class="btn btn-primary" style="background:var(--gold);color:#1C1A17;font-size:15px;padding:14px 30px;" onclick="goTo('group')">
+        <div class="welcome-body">This form will guide your team through each workspace topic, show you what the NXP Austin standard solution already provides, and capture only the requirements that are genuinely unique to your team.</div>
+        <button class="btn btn-primary" style="background:var(--orange);color:white;font-size:15px;padding:14px 30px;" onclick="goTo('group')">
           Get started
           <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
         </button>
@@ -832,14 +867,14 @@
 
       <div class="welcome-cards">
         <div class="welcome-card">
-          <div class="welcome-card-icon icon-green">
+          <div class="welcome-card-icon icon-blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
-          <h4>Learn the standard first</h4>
-          <p>Each topic begins with what's already planned — so you know what you're getting by default.</p>
+          <h4>Learn the NXP standard first</h4>
+          <p>Each topic begins with what's already planned for Austin_Next — so you know what you're getting by default.</p>
         </div>
         <div class="welcome-card">
-          <div class="welcome-card-icon icon-amber">
+          <div class="welcome-card-icon icon-orange">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <h4>Only flag true exceptions</h4>
@@ -850,12 +885,12 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           </div>
           <h4>Auto-collated output</h4>
-          <p>Your answers compile into a summary report that the project team can review directly — no manual synthesis needed.</p>
+          <p>Your answers compile into a summary report that the Austin_Next project team can review directly.</p>
         </div>
       </div>
 
       <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;">
-        <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;"><strong style="color:var(--ink);">Who should complete this?</strong> One representative per team or department, ideally someone who can speak to how your team actually works day-to-day. If you have questions, contact your workplace project coordinator before completing. This typically takes 15–25 minutes. <strong style="color:var(--ink);">Only fill in exception fields where the standard genuinely doesn't work for you.</strong> If you leave exception sections blank, that tells us the standard is fine.</p>
+        <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;"><strong style="color:var(--ink);">Who should complete this?</strong> One representative per team or department — ideally someone who can speak to how your team actually works day-to-day. If you have questions, contact your Austin_Next workplace project coordinator before completing. This typically takes 15–25 minutes. <strong style="color:var(--ink);">Only fill in exception fields where the NXP standard genuinely doesn't work for you.</strong> If you leave exception sections blank, that tells us the standard is fine.</p>
       </div>
     </div>
 
@@ -864,23 +899,23 @@
       <div class="panel-header">
         <div class="panel-tag">Start here</div>
         <h1 class="panel-title">About your team</h1>
-        <p class="panel-description">Tell us a bit about who you represent. This context helps the project team understand the scale and nature of any requirements you flag.</p>
+        <p class="panel-description">Tell us a bit about who you represent. This context helps the Austin_Next project team understand the scale and nature of any requirements you flag.</p>
       </div>
 
       <div class="form-group">
         <label class="form-label">Department / team name(s) <span class="required">*</span></label>
-        <input type="text" class="form-input" id="g-dept" placeholder="e.g. Risk & Compliance, Payor Strategy" oninput="autosave()">
+        <input type="text" class="form-input" id="g-dept" placeholder="e.g. Finance Operations, Legal, R&amp;D Engineering" oninput="autosave()">
       </div>
 
       <div class="form-group">
         <label class="form-label">Brief description of your team's role and responsibilities <span class="required">*</span></label>
-        <textarea class="form-textarea" id="g-role" placeholder="What does your team do? What does a typical workday look like?" oninput="autosave()"></textarea>
+        <textarea class="form-textarea" id="g-role" placeholder="What does your team do? What does a typical workday look like? Include any key workflows or systems your team relies on." oninput="autosave()"></textarea>
       </div>
 
       <div class="form-grid-2">
         <div class="form-group">
           <label class="form-label">Current primary location(s)</label>
-          <input type="text" class="form-input" id="g-location" placeholder="e.g. 777 3rd Ave, Floor 12" oninput="autosave()">
+          <input type="text" class="form-input" id="g-location" placeholder="e.g. NXP Austin, Building A, Floor 3" oninput="autosave()">
         </div>
         <div class="form-group">
           <label class="form-label">Approximate headcount</label>
@@ -890,18 +925,12 @@
 
       <div class="form-group">
         <label class="form-label">Current workspace setup</label>
-        <textarea class="form-textarea" style="min-height:72px;" id="g-setup" placeholder="e.g. 30 dedicated desks, 2 private offices, 1 dedicated meeting room. Occasionally use shared conference rooms on floor 14." oninput="autosave()"></textarea>
+        <textarea class="form-textarea" style="min-height:72px;" id="g-setup" placeholder="e.g. 30 dedicated desks, 2 private offices, 1 dedicated meeting room, shared conference rooms on floor 4." oninput="autosave()"></textarea>
       </div>
 
       <div class="form-group">
         <label class="form-label">Rough time split between assigned space and other locations</label>
-        <input type="text" class="form-input" id="g-split" placeholder="e.g. ~70% at desk, 20% in meetings, 10% offsite / remote" oninput="autosave()">
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Number of team members without HSS-issued laptops (or who remote in to a desktop)</label>
-        <input type="number" class="form-input" id="g-nolaptop" placeholder="e.g. 4" min="0" oninput="autosave()">
-        <div class="form-hint">Include anyone who currently relies on a fixed desktop workstation to do their job.</div>
+        <input type="text" class="form-input" id="g-split" placeholder="e.g. ~70% at desk, 20% in meetings, 10% lab / offsite" oninput="autosave()">
       </div>
 
       <div class="nav-buttons">
@@ -920,7 +949,7 @@
       <div class="panel-header">
         <div class="panel-tag">Topic 1 of 8</div>
         <h1 class="panel-title">Paper & workflow processes</h1>
-        <p class="panel-description">Paper-based workflows — receiving, processing, annotating, or sending physical documents — are a common area of concern during office transitions.</p>
+        <p class="panel-description">NXP Austin_Next is designed around a paper-independent, digital-first way of working. Please review the standard approach and flag any genuine exceptions your team cannot accommodate.</p>
       </div>
 
       <div class="standard-card">
@@ -928,36 +957,36 @@
           <div class="standard-icon" style="background:var(--accent);">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
-          <div class="standard-card-title">What the standard solution already includes</div>
+          <div class="standard-card-title">What the NXP Austin standard already includes</div>
         </div>
         <ul class="standard-bullets">
-          <li>Reduction in paper reliance — digital workflows replace paper-based signing, filing, and distribution wherever feasible</li>
-          <li><strong>Follow-me / pull printing</strong>: Documents print only when you authenticate at a printer. Your document follows you to any printer on the floor.</li>
-          <li>Mail distributed on a team basis, or scanned and routed digitally</li>
-          <li>Hard-copy-only documents stored off-site (e.g. Iron Mountain) if not needed on-site daily</li>
-          <li>Shared team printer/scanner on every floor, not at individual desks</li>
+          <li>Ongoing shift to digital workflows — physical signing, filing, and paper distribution is being replaced by digital equivalents wherever feasible</li>
+          <li><strong>Follow-me / pull printing</strong>: Documents only print when you authenticate at a printer of your choice. User authentication is required to retrieve documents or scan to email.</li>
+          <li>Continuing reduction in team paper storage — move toward paper-independent working aligned with ABW principles</li>
+          <li><strong>Centralised mailroom</strong>: All mail and packages delivered to a central point; teams collect or request digital routing</li>
+          <li>NXP has an active internal initiative to digitize materials — teams are expected to align with this direction</li>
         </ul>
       </div>
 
       <div class="exception-gate">
         <div class="gate-question">Does the standard solution above cover your team's paper and workflow needs?</div>
-        <div class="gate-hint">Select "Yes, covered" if you don't have unusual paper processes. Only select "No, we have exceptions" if your team has requirements the standard doesn't address.</div>
+        <div class="gate-hint">Select "Yes, covered" if you don't have unusual paper processes. Only select "No, we have exceptions" if your team has requirements the standard doesn't address — e.g. documents that legally require original wet signatures, high-volume regulated print/file workflows, or physical mail handling that cannot be centralized.</div>
         <div class="gate-options">
           <button class="gate-btn" id="s1-yes" onclick="setGate('s1', 'yes')">✓ Yes, covered by standard</button>
           <button class="gate-btn" id="s1-no" onclick="setGate('s1', 'no')">✗ No, we have exceptions</button>
         </div>
         <div class="no-exception-banner" id="s1-noexception">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Great — no exception needed. The standard applies to your team.
+          Great — no exception needed. The NXP standard applies to your team.
         </div>
         <div class="exception-form" id="s1-form">
           <div class="exception-alert">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-            Please only describe what the standard <em>doesn't</em> cover. Avoid repeating what's already listed above.
+            Please describe only what the standard <em>doesn't</em> cover. Avoid repeating what's already listed above.
           </div>
           <div class="form-group">
             <label class="form-label">Describe the specific paper or workflow exception <span class="required">*</span></label>
-            <textarea class="form-textarea" id="s1-desc" placeholder="e.g. We receive ~200 original-signature invoices per week that must be physically signed, stamped, and filed on-site per regulatory requirement. These cannot be digitised at this stage." oninput="autosave()"></textarea>
+            <textarea class="form-textarea" id="s1-desc" placeholder="e.g. We process ~150 original-signature vendor contracts per month that require physical wet-ink signing and on-site filing per NXP Legal policy. Digitisation is not yet approved for this document type." oninput="autosave()"></textarea>
           </div>
           <div class="form-grid-2">
             <div class="form-group">
@@ -971,14 +1000,15 @@
           </div>
           <div class="form-group">
             <label class="form-label">What space or equipment would this require?</label>
-            <textarea class="form-textarea" style="min-height:72px;" id="s1-space" placeholder="e.g. A dedicated secure filing area adjacent to the team zone, approximately 2m of lateral filing." oninput="autosave()"></textarea>
+            <textarea class="form-textarea" style="min-height:72px;" id="s1-space" placeholder="e.g. A dedicated secure filing area adjacent to the Finance team zone, approximately 2m of lateral filing. Or: a dedicated high-volume printer with continuous-feed tray." oninput="autosave()"></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">Is this a regulatory / compliance requirement, or an operational preference?</label>
             <select class="form-select" id="s1-driver" onchange="autosave()">
               <option value="">— Select one —</option>
               <option>Regulatory / legal requirement</option>
-              <option>Clinical or safety requirement</option>
+              <option>Contractual / customer requirement</option>
+              <option>NXP internal policy (not yet digitized)</option>
               <option>Operational need (not regulated)</option>
               <option>Team preference / habit</option>
               <option>Unsure</option>
@@ -998,46 +1028,46 @@
       <div class="panel-header">
         <div class="panel-tag">Topic 2 of 8</div>
         <h1 class="panel-title">Storage needs</h1>
-        <p class="panel-description">Moving to a shared environment means a shift away from individual storage. Here's what's already built into the plan.</p>
+        <p class="panel-description">Austin_Next is designed around Activity Based Working (ABW), which requires a shift away from individual assigned storage. Here's what's already built into the plan.</p>
       </div>
 
       <div class="standard-card">
         <div class="standard-card-header">
           <div class="standard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg></div>
-          <div class="standard-card-title">What the standard solution already includes</div>
+          <div class="standard-card-title">What the NXP Austin standard already includes</div>
         </div>
         <ul class="standard-bullets">
-          <li><strong>Day lockers</strong> for personal items (bag, laptop, personal belongings) — available to every employee and visitor on-site</li>
-          <li><strong>Team filing cabinets</strong> (individually locking laterals) allocated on an as-needed basis</li>
-          <li><strong>Reference shelving</strong> (library-style bookshelves) in shared areas</li>
-          <li><strong>Non-workflow storage room</strong> on every floor for infrequently accessed items (statutory documents, marketing collateral, stationery, seasonal items)</li>
-          <li>Long-term archiving off-site (e.g. Iron Mountain) where items don't need to be accessed day-to-day</li>
+          <li><strong>Personal lockers</strong> for each employee — capacity up to the size of a wireless keyboard; available to all staff and visitors for day use</li>
+          <li><strong>Locking lateral filing cabinets</strong> allocated to teams and individuals based on demonstrated need — not a universal per-person allocation</li>
+          <li><strong>Non-workflow storage room</strong> available for items not needed day-to-day (statutory documents, marketing collateral, stationery, seasonal items)</li>
+          <li>Long-term archiving held off-site where items don't need regular on-site access</li>
+          <li>ABW transition expects teams to reduce paper reliance — employees should work toward paper independence over time</li>
         </ul>
       </div>
 
       <div class="exception-gate">
         <div class="gate-question">Does the standard storage provision cover your team's needs?</div>
-        <div class="gate-hint">Flag exceptions only if your team has storage requirements that go clearly beyond the standard — e.g. specialised equipment, secure clinical documentation, high-volume regulated archives.</div>
+        <div class="gate-hint">Flag exceptions only if your team has storage requirements clearly beyond the standard — e.g. specialized hardware or equipment, large-format materials, high-volume regulated archives, or items requiring specific environmental conditions.</div>
         <div class="gate-options">
           <button class="gate-btn" id="s2-yes" onclick="setGate('s2', 'yes')">✓ Yes, covered by standard</button>
           <button class="gate-btn" id="s2-no" onclick="setGate('s2', 'no')">✗ No, we have exceptions</button>
         </div>
         <div class="no-exception-banner" id="s2-noexception">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Great — no exception needed. The standard applies to your team.
+          Great — no exception needed. The NXP standard applies to your team.
         </div>
         <div class="exception-form" id="s2-form">
           <div class="exception-alert">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-            Please describe only what goes beyond the standard listed above.
+            Describe only what goes beyond the standard listed above.
           </div>
           <div class="form-group">
             <label class="form-label">Describe the storage exception <span class="required">*</span></label>
-            <textarea class="form-textarea" id="s2-desc" placeholder="e.g. We hold 8 lateral drawers of active clinical trial source documents that must be on-site, secure, and accessible to auditors within 15 minutes of request." oninput="autosave()"></textarea>
+            <textarea class="form-textarea" id="s2-desc" placeholder="e.g. We hold 6 lateral drawers of active NDA-protected contract originals that must be on-site, locked, and accessible to Legal within 15 minutes of a request. These cannot be archived off-site." oninput="autosave()"></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">Storage type(s) required</label>
-            <input type="text" class="form-input" id="s2-type" placeholder="e.g. Lateral filing cabinets, enclosed secure room, refrigerated storage, oversized flat-file drawers" oninput="autosave()">
+            <input type="text" class="form-input" id="s2-type" placeholder="e.g. Locking lateral filing cabinets, enclosed secure room, ESD-safe storage, large-format flat-file drawers, equipment racks" oninput="autosave()">
           </div>
           <div class="form-grid-2">
             <div class="form-group">
@@ -1057,14 +1087,15 @@
           </div>
           <div class="form-group">
             <label class="form-label">Security / access control requirements</label>
-            <input type="text" class="form-input" id="s2-security" placeholder="e.g. Must be in an enclosed, locked room; key-card access only; audit trail required" oninput="autosave()">
+            <input type="text" class="form-input" id="s2-security" placeholder="e.g. Must be in an enclosed, locked room; badge-card access only; or: open team access is fine" oninput="autosave()">
           </div>
           <div class="form-group">
             <label class="form-label">Driver of this requirement</label>
             <select class="form-select" id="s2-driver" onchange="autosave()">
               <option value="">— Select one —</option>
               <option>Regulatory / legal requirement</option>
-              <option>Clinical or safety requirement</option>
+              <option>NXP IP / trade secret protection</option>
+              <option>Contractual / customer requirement</option>
               <option>Operational need (not regulated)</option>
               <option>Team preference / habit</option>
               <option>Unsure</option>
@@ -1084,64 +1115,65 @@
       <div class="panel-header">
         <div class="panel-tag">Topic 3 of 8</div>
         <h1 class="panel-title">Technology & IT kit</h1>
-        <p class="panel-description">IT equipment is largely standardised across the organisation. Please flag only genuine exceptions — e.g. specialist hardware, non-standard monitor requirements, or call-intensive roles.</p>
+        <p class="panel-description">NXP IT equipment is standardised for Austin_Next. Please flag only genuine exceptions — e.g. specialist hardware, non-standard monitor configurations, lab-connected workstations, or call-intensive roles.</p>
       </div>
 
       <div class="standard-card">
         <div class="standard-card-header">
           <div class="standard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-          <div class="standard-card-title">What the standard solution already includes</div>
+          <div class="standard-card-title">What the NXP Austin standard already includes</div>
         </div>
         <ul class="standard-bullets">
-          <li><strong>HSS-issued laptop</strong> as primary computing device</li>
+          <li><strong>NXP-issued thin laptop</strong> as primary computing device — all hardware via NXP Procurement-approved vendors</li>
           <li><strong>Universal docking station</strong> at every workstation — connects laptop to screens, keyboard, mouse; charges USB devices</li>
-          <li><strong>1–2 monitors</strong> per workstation</li>
-          <li><strong>Peripherals</strong>: 1 keyboard, 1 mouse, personal headset (for calls and virtual meetings)</li>
-          <li><strong>Softphone</strong>: make/receive calls from a landline number via PC or smartphone — no desk phone needed at standard workstations</li>
-          <li>Desk phones available in call-centre zones or solo booths for high-call-volume roles</li>
+          <li><strong>Standard workstations: 2 × 24" monitors</strong> per desk</li>
+          <li><strong>Peripherals</strong>: 1 keyboard, 1 mouse, personal headset per employee (Logitech/Jabra certified)</li>
+          <li><strong>Softphone via Microsoft Teams</strong>: make/receive calls from a landline number via PC or smartphone — desk phones are not part of the standard setup</li>
+          <li><strong>All meeting spaces</strong>: NXP IT-supported Microsoft Teams solutions with Logitech/Jabra certified hardware; one-click join via M365</li>
         </ul>
       </div>
 
       <div class="exception-gate">
-        <div class="gate-question">Does the standard IT kit cover your team's technology needs?</div>
-        <div class="gate-hint">Note: If members of your team currently remote-in to a desktop or don't have a laptop, you already told us this in Group Info — that's captured. Flag here only if there's additional specialised equipment needed.</div>
+        <div class="gate-question">Does the standard NXP IT kit cover your team's technology needs?</div>
+        <div class="gate-hint">Note: If members of your team currently use a fixed desktop or don't have a laptop, you've already captured that in Group Info. Flag here only if there's additional specialized equipment needed — e.g. specific monitor sizes/quantities, drawing tablets, dedicated phone lines, lab instruments, or specialized compute requirements.</div>
         <div class="gate-options">
           <button class="gate-btn" id="s3-yes" onclick="setGate('s3', 'yes')">✓ Yes, covered by standard</button>
           <button class="gate-btn" id="s3-no" onclick="setGate('s3', 'no')">✗ No, we have exceptions</button>
         </div>
         <div class="no-exception-banner" id="s3-noexception">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Great — no exception needed. The standard applies to your team.
+          Great — no exception needed. The NXP standard applies to your team.
         </div>
         <div class="exception-form" id="s3-form">
           <div class="exception-alert">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-            Describe only requirements beyond the standard — specialist hardware, unusual monitor needs, dedicated desk phone lines, etc.
+            Describe only requirements beyond the NXP standard — specialist hardware, non-standard monitor needs, dedicated phone lines, lab-connected workstations, etc.
           </div>
           <div class="form-group">
             <label class="form-label">Describe the technology exception <span class="required">*</span></label>
-            <textarea class="form-textarea" id="s3-desc" placeholder="e.g. 3 team members use dual 27&quot; monitors and a drawing tablet for radiology image review. Standard 1-2 screen setup is insufficient for this workflow." oninput="autosave()"></textarea>
+            <textarea class="form-textarea" id="s3-desc" placeholder="e.g. 4 hardware engineers require 3 × 27&quot; monitors to work across multiple chip design tool windows simultaneously. Standard 2 × 24&quot; configuration is not sufficient for this workflow." oninput="autosave()"></textarea>
           </div>
           <div class="form-grid-2">
             <div class="form-group">
               <label class="form-label">Number of people affected</label>
-              <input type="number" class="form-input" id="s3-people" placeholder="e.g. 3" min="1" oninput="autosave()">
+              <input type="number" class="form-input" id="s3-people" placeholder="e.g. 4" min="1" oninput="autosave()">
             </div>
             <div class="form-group">
               <label class="form-label">Driver</label>
               <select class="form-select" id="s3-driver" onchange="autosave()">
                 <option value="">— Select one —</option>
-                <option>Regulatory / clinical requirement</option>
-                <option>Software / system dependency</option>
-                <option>High call volume / telephony need</option>
-                <option>Specialist hardware (e.g. drawing tablet, dual high-res monitors)</option>
+                <option>Software / EDA tool dependency</option>
+                <option>Lab or test equipment integration</option>
+                <option>High call volume / dedicated telephony</option>
+                <option>Specialist hardware (e.g. multi-screen, drawing tablet, high-performance compute)</option>
+                <option>Security or compliance requirement</option>
                 <option>Other operational need</option>
               </select>
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Any IT contacts or existing approvals for this equipment?</label>
-            <input type="text" class="form-input" id="s3-it" placeholder="e.g. Already approved by IT — contact Jane Smith. Or: needs IT review." oninput="autosave()">
+            <label class="form-label">Any NXP IT contacts or existing approvals for this equipment?</label>
+            <input type="text" class="form-input" id="s3-it" placeholder="e.g. Already approved via NXP IT ticket #XXXXX — contact John Lee in IT. Or: needs IT review and Procurement approval." oninput="autosave()">
           </div>
         </div>
       </div>
@@ -1157,43 +1189,48 @@
       <div class="panel-header">
         <div class="panel-tag">Topic 4 of 8</div>
         <h1 class="panel-title">Access, confidentiality & security</h1>
-        <p class="panel-description">Many confidentiality needs are already covered by the design. Read carefully before flagging an exception.</p>
+        <p class="panel-description">NXP Austin uses a structured security zone model. Many confidentiality needs are already addressed by the design — read carefully before flagging an exception.</p>
       </div>
 
       <div class="standard-card">
         <div class="standard-card-header">
           <div class="standard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <div class="standard-card-title">What the standard solution already includes</div>
+          <div class="standard-card-title">What the NXP Austin standard already includes</div>
         </div>
-        <ul class="standard-bullets">
-          <li>Badge-controlled access at building entry and floor level — restricts entry beyond the lobby</li>
-          <li>Every employee has access to workspaces with <strong>acoustic privacy</strong> (phone booths, enclosed meeting rooms) for sensitive conversations</li>
+        <p style="font-size:13.5px;color:#1D3A68;margin-bottom:12px;">NXP Austin uses a <strong>4-level security zone model</strong>:</p>
+        <div class="zone-grid">
+          <div class="zone-badge zone-1"><div class="zone-dot"></div><span><strong>Level 1 – Blue:</strong> Public areas, no access controls</span></div>
+          <div class="zone-badge zone-2"><div class="zone-dot"></div><span><strong>Level 2 – Green:</strong> Standard badge access for general office areas</span></div>
+          <div class="zone-badge zone-3"><div class="zone-dot"></div><span><strong>Level 3 – Yellow:</strong> Restricted badge access for confidential functions (HR, Finance, Legal) or secured labs</span></div>
+          <div class="zone-badge zone-4"><div class="zone-dot"></div><span><strong>Level 4 – Red:</strong> Badge + PIN, continuous monitoring for high-security areas</span></div>
+        </div>
+        <ul class="standard-bullets" style="margin-top:14px;">
+          <li>Confidential Neighborhoods: frosted/semi-transparent treatment, acoustic soundproofing, screen protectors at open workstations, badge-secured entry — located in low-traffic peripheral areas</li>
+          <li>Every employee has access to <strong>acoustic privacy</strong> (phone booths, enclosed rooms) for sensitive conversations</li>
           <li>Every employee has access to <strong>visual privacy</strong> options (privacy screen filters, enclosed booths)</li>
-          <li>Meeting rooms provide full acoustic and configurable visual privacy</li>
-          <li>Training available to help staff make good choices about where to have confidential conversations</li>
-          <li><em>Note: Individual health/disability accommodations are managed separately through Employee Health — please do not include these here.</em></li>
+          <li>Training provided on NXP Global Security Guidelines and zone-specific requirements</li>
         </ul>
       </div>
 
       <div class="exception-gate">
-        <div class="gate-question">Does the standard security and confidentiality provision cover your team's needs?</div>
-        <div class="gate-hint">Think about: specific data classification requirements, regulatory constraints on adjacency, or physical security needs beyond badge access (e.g. secure server room access, visitor restrictions).</div>
+        <div class="gate-question">Does the standard NXP security and confidentiality provision cover your team's needs?</div>
+        <div class="gate-hint">Consider: specific data classification requirements (e.g. ITAR, export control), regulatory constraints on adjacency or co-location, physical security needs beyond standard zone badge access, or visitor restriction requirements beyond the norm.</div>
         <div class="gate-options">
           <button class="gate-btn" id="s4-yes" onclick="setGate('s4', 'yes')">✓ Yes, covered by standard</button>
           <button class="gate-btn" id="s4-no" onclick="setGate('s4', 'no')">✗ No, we have exceptions</button>
         </div>
         <div class="no-exception-banner" id="s4-noexception">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Great — no exception needed. The standard applies to your team.
+          Great — no exception needed. The NXP standard applies to your team.
         </div>
         <div class="exception-form" id="s4-form">
           <div class="exception-alert">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-            Describe only what the standard cannot address. Be specific about whether the need is acoustic, visual, physical, digital, or an adjacency restriction.
+            Describe only what the NXP standard cannot address. Be specific about whether the need is acoustic, visual, physical, digital, or an adjacency restriction.
           </div>
           <div class="form-group">
             <label class="form-label">Describe the security or access exception <span class="required">*</span></label>
-            <textarea class="form-textarea" id="s4-desc" placeholder="e.g. Our team handles M&A due diligence. We need a dedicated, always-locked area where screens cannot be viewed from adjacent workstations or corridors — standard privacy screens are not sufficient." oninput="autosave()"></textarea>
+            <textarea class="form-textarea" id="s4-desc" placeholder="e.g. Our team works on ITAR-controlled semiconductor designs. We require a dedicated, always-locked workspace where screens cannot be viewed from adjacent areas or corridors, and where access is restricted to cleared personnel only. Standard Level 2 badge access is not sufficient." oninput="autosave()"></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">Type of privacy / security need</label>
@@ -1207,11 +1244,11 @@
           </div>
           <div class="form-group">
             <label class="form-label">Regulatory or compliance basis (if applicable)</label>
-            <input type="text" class="form-input" id="s4-reg" placeholder="e.g. HIPAA, SEC information barrier requirements, attorney-client privilege, SOX" oninput="autosave()">
+            <input type="text" class="form-input" id="s4-reg" placeholder="e.g. ITAR, EAR export control, SOX, attorney-client privilege, pre-earnings financial results, NDA obligations" oninput="autosave()">
           </div>
           <div class="form-group">
             <label class="form-label">Are there any teams you must be separated from or cannot be adjacent to?</label>
-            <input type="text" class="form-input" id="s4-adj" placeholder="e.g. Must not be co-located with Trading desk due to information barrier" oninput="autosave()">
+            <input type="text" class="form-input" id="s4-adj" placeholder="e.g. Must not be co-located with external partners or specific business units due to information barrier requirements" oninput="autosave()">
           </div>
         </div>
       </div>
@@ -1227,55 +1264,57 @@
       <div class="panel-header">
         <div class="panel-tag">Topic 5 of 8</div>
         <h1 class="panel-title">Meeting spaces</h1>
-        <p class="panel-description">A range of meeting environments is already planned. Please flag only requirements that go beyond the standard provision.</p>
+        <p class="panel-description">Austin_Next includes a full range of meeting environments. Please flag only requirements that go beyond this standard provision.</p>
       </div>
 
       <div class="standard-card">
         <div class="standard-card-header">
           <div class="standard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
-          <div class="standard-card-title">What the standard solution already includes</div>
+          <div class="standard-card-title">What NXP Austin_Next already includes</div>
         </div>
         <ul class="standard-bullets">
-          <li><strong>Meeting rooms (6–10 people)</strong>: Acoustically private, AV-enabled for display and video conferencing, for structured meetings of 1–2 hours</li>
-          <li><strong>Huddle rooms (2–5 people)</strong>: Semi-private, AV-capable, suited to quick discussions and hybrid calls</li>
-          <li><strong>Soft / open settings</strong>: Informal collaboration areas for small groups, solo focus work, and social interaction — variety of sizes</li>
-          <li>All bookable meeting rooms equipped for hybrid participation (screen, camera, microphone)</li>
+          <li><strong>Formal Meeting Spaces (6–20 people)</strong>: Acoustically private, reservable, built-in AV with Microsoft Teams (Logitech/Jabra certified), 1 power outlet per chair — accessible to all neighborhoods from the building core</li>
+          <li><strong>Small Meeting Spaces (2–4 people)</strong>: Bookable and non-bookable enclosed rooms with varying AV setup to support small huddles or meetings</li>
+          <li><strong>Focus Rooms (1–2 people)</strong>: Non-reservable enclosed rooms, max 2-hour use, acoustic privacy, clear glass fronts, sit-stand desks, 24" monitor + webcam</li>
+          <li><strong>Alternative Meeting Spaces (6+ people)</strong>: Reservable medium/large rooms with flexible or informal furniture supporting hybrid collaboration with built-in or mobile AV</li>
+          <li><strong>Collaboration Hubs &amp; Social Hearts</strong>: Non-reservable open informal settings for small-group work, solo focus, and social interaction — wireless network, optional AV, adjacent to Social Hearts break areas</li>
+          <li><em>Note: Training rooms and auditorium space will be provided at the Champion site.</em></li>
         </ul>
       </div>
 
       <div class="exception-gate">
-        <div class="gate-question">Does the standard meeting space provision cover your team's needs?</div>
-        <div class="gate-hint">Consider: specialist rooms (e.g. training rooms for >10 people, presentation theatres, rooms requiring specific AV beyond standard), dedicated team rooms used many hours per day, or clinical spaces.</div>
+        <div class="gate-question">Does the standard NXP Austin meeting space provision cover your team's needs?</div>
+        <div class="gate-hint">Consider: rooms that regularly need 20+ people, specialist AV beyond standard Teams setup (e.g. presentation theatres, boardroom-style layout), dedicated team rooms occupied many hours per day, or rooms with specific technical requirements.</div>
         <div class="gate-options">
           <button class="gate-btn" id="s5-yes" onclick="setGate('s5', 'yes')">✓ Yes, covered by standard</button>
           <button class="gate-btn" id="s5-no" onclick="setGate('s5', 'no')">✗ No, we have exceptions</button>
         </div>
         <div class="no-exception-banner" id="s5-noexception">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Great — no exception needed. The standard applies to your team.
+          Great — no exception needed. The NXP standard applies to your team.
         </div>
         <div class="exception-form" id="s5-form">
           <div class="exception-alert">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-            Describe only requirements that the standard meeting rooms and huddle rooms don't address.
+            Describe only requirements that the standard meeting environments don't address.
           </div>
           <div class="form-group">
             <label class="form-label">Describe the meeting space exception <span class="required">*</span></label>
-            <textarea class="form-textarea" id="s5-desc" placeholder="e.g. We run monthly all-hands training sessions for 30–40 staff requiring a presentation-style room with a projector, lectern, and moveable chairs. This isn't available in the standard 10-person meeting room." oninput="autosave()"></textarea>
+            <textarea class="form-textarea" id="s5-desc" placeholder="e.g. We hold bi-weekly all-hands technical reviews for 35–45 engineers requiring a presentation-style room with a large projection wall, lectern, and moveable seating. This is beyond the capacity of standard 6–20 person formal rooms." oninput="autosave()"></textarea>
           </div>
           <div class="form-grid-2">
             <div class="form-group">
               <label class="form-label">Capacity needed</label>
-              <input type="text" class="form-input" id="s5-cap" placeholder="e.g. 30–40 people" oninput="autosave()">
+              <input type="text" class="form-input" id="s5-cap" placeholder="e.g. 35–45 people" oninput="autosave()">
             </div>
             <div class="form-group">
               <label class="form-label">Frequency of use</label>
-              <input type="text" class="form-input" id="s5-freq" placeholder="e.g. Monthly, ~3 hrs each time" oninput="autosave()">
+              <input type="text" class="form-input" id="s5-freq" placeholder="e.g. Bi-weekly, ~2 hrs each time" oninput="autosave()">
             </div>
           </div>
           <div class="form-group">
             <label class="form-label">Special AV or furniture requirements</label>
-            <input type="text" class="form-input" id="s5-av" placeholder="e.g. Projection screen, dual displays, moveable seating, soundproofing, clinical-grade surfaces" oninput="autosave()">
+            <input type="text" class="form-input" id="s5-av" placeholder="e.g. Large projection wall, dual displays, moveable seating, lab demo bench, dedicated video-conferencing for remote engineering sites" oninput="autosave()">
           </div>
           <div class="form-group">
             <label class="form-label">Must this space be dedicated / reserved to your team, or can it be shared?</label>
@@ -1300,31 +1339,31 @@
       <div class="panel-header">
         <div class="panel-tag">Topic 6 of 8</div>
         <h1 class="panel-title">Visual management</h1>
-        <p class="panel-description">Kanban boards, performance dashboards, Agile walls — if your team runs regular visual management processes, this is the place to describe them.</p>
+        <p class="panel-description">Kanban boards, Agile walls, release trackers, performance dashboards — if your team runs regular visual management processes, this is the place to describe them.</p>
       </div>
 
       <div class="standard-card">
         <div class="standard-card-header">
           <div class="standard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-          <div class="standard-card-title">What the standard solution already includes</div>
+          <div class="standard-card-title">What NXP Austin_Next already includes</div>
         </div>
         <ul class="standard-bullets">
-          <li>Whiteboards available in open work areas for all staff to use</li>
-          <li>Large meeting rooms (6+ seats) equipped with writable wall surfaces for visualisation</li>
-          <li>Standard assumption: visual management sessions are in-person only — no hybrid camera/mic setup required unless specifically requested</li>
+          <li>Whiteboards available in open work areas for all staff — should be cleared after each use (not permanently claimed)</li>
+          <li>Large meeting rooms (6+ seats) include <strong>large whiteboard surfaces</strong> for visualization in addition to standard AV — visual management aids supplement, not replace, AV capability</li>
+          <li>All meeting spaces include NXP IT-standard AV (Microsoft Teams, Logitech/Jabra hardware); if your team needs visual management without AV, Focus Rooms and Collaboration Hubs are available</li>
         </ul>
       </div>
 
       <div class="exception-gate">
         <div class="gate-question">Does the standard visual management provision cover your team's needs?</div>
-        <div class="gate-hint">Flag an exception if you need: a permanently dedicated wall or board (not shareable), very large physical display areas, a specific location adjacent to your team zone, or real-time hybrid visual management capability.</div>
+        <div class="gate-hint">Flag an exception if you need: a permanently dedicated wall or board (not shareable), a very large physical display area for a persistent Kanban/Agile wall or release board, a specific location adjacent to your team zone, or real-time hybrid visual management capability.</div>
         <div class="gate-options">
           <button class="gate-btn" id="s6-yes" onclick="setGate('s6', 'yes')">✓ Yes, covered by standard</button>
           <button class="gate-btn" id="s6-no" onclick="setGate('s6', 'no')">✗ No, we have exceptions</button>
         </div>
         <div class="no-exception-banner" id="s6-noexception">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Great — no exception needed. The standard applies to your team.
+          Great — no exception needed. The NXP standard applies to your team.
         </div>
         <div class="exception-form" id="s6-form">
           <div class="exception-alert">
@@ -1333,21 +1372,21 @@
           </div>
           <div class="form-group">
             <label class="form-label">Describe the visual management exception <span class="required">*</span></label>
-            <textarea class="form-textarea" id="s6-desc" placeholder="e.g. We run a daily stand-up at a 4m Agile board that must remain permanently set up and visible to the full team. A shared whiteboard that gets erased between uses won't work for us." oninput="autosave()"></textarea>
+            <textarea class="form-textarea" id="s6-desc" placeholder="e.g. Our Agile engineering team runs a daily stand-up at a 5m physical Kanban board that must remain permanently set up with sprint cards and release milestones visible. A shared whiteboard that gets erased between uses doesn't work for us." oninput="autosave()"></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">Approximate size / area required</label>
-            <input type="text" class="form-input" id="s6-size" placeholder="e.g. 4m of wall space; permanent pinboard area" oninput="autosave()">
+            <input type="text" class="form-input" id="s6-size" placeholder="e.g. 5m of dedicated wall space; permanent pinboard / magnetic rail area" oninput="autosave()">
           </div>
           <div class="form-group">
             <label class="form-label">Frequency of use</label>
-            <input type="text" class="form-input" id="s6-freq" placeholder="e.g. Daily 15-min stand-ups + weekly sprint reviews" oninput="autosave()">
+            <input type="text" class="form-input" id="s6-freq" placeholder="e.g. Daily 15-min stand-ups + weekly sprint reviews + bi-weekly roadmap planning" oninput="autosave()">
           </div>
           <div class="form-group">
             <label class="form-label">Does this need to support hybrid participants (remote attendees)?</label>
             <select class="form-select" id="s6-hybrid" onchange="autosave()">
               <option value="">— Select —</option>
-              <option>Yes — camera + screen needed</option>
+              <option>Yes — camera + screen needed for remote engineers</option>
               <option>No — in-person only</option>
               <option>Occasionally — nice to have</option>
             </select>
@@ -1366,42 +1405,42 @@
       <div class="panel-header">
         <div class="panel-tag">Topic 7 of 8</div>
         <h1 class="panel-title">Ergonomics & accessibility</h1>
-        <p class="panel-description">The new environment is designed to a higher ergonomics standard than most existing workplaces. Individual health-related accommodations should go through Employee Health, not this form.</p>
+        <p class="panel-description">Austin_Next is designed to a higher ergonomics standard than most existing NXP workplaces. Individual health-related accommodations should go through NXP's occupational health team, not this form.</p>
       </div>
 
       <div class="standard-card">
         <div class="standard-card-header">
           <div class="standard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <div class="standard-card-title">What the standard solution already includes</div>
+          <div class="standard-card-title">What NXP Austin_Next already includes</div>
         </div>
         <ul class="standard-bullets">
-          <li>All standard workstations are <strong>sit-to-stand height-adjustable</strong></li>
-          <li>Task chairs with full adjustability: arms, lumbar support, rolling casters, adjustable seat height — capable of 8-hour support</li>
-          <li>Designed to <strong>exceed wheelchair accessibility standards</strong> throughout</li>
-          <li>Choice of environments means individuals can self-select brighter or dimmer areas, quieter or more energetic zones</li>
-          <li>Individual health/disability accommodations continue to be managed through Employee Health privately — <em>do not include personal health details here</em></li>
+          <li><strong>100% of focus and process workstations are sit-to-stand height-adjustable</strong></li>
+          <li>Task chairs with full adjustability: adjustable arms, lumbar support, rolling casters, adjustable seat height — rated for 8-hour use</li>
+          <li>Designed to <strong>exceed wheelchair accessibility standards</strong> throughout the space</li>
+          <li>A choice of environments means employees can self-select brighter/dimmer areas, quieter/more energetic zones throughout the day</li>
+          <li>Individuals with an endorsed requirement through NXP's occupational health team will be managed through that existing process — <em>do not include personal health details in this form</em></li>
         </ul>
       </div>
 
       <div class="exception-gate">
         <div class="gate-question">Does the standard ergonomic design cover your team's group-level needs?</div>
-        <div class="gate-hint">Flag here only if your team has a functional (not personal health) requirement — e.g. a specialist workstation configuration required by your role, not by an individual's medical need.</div>
+        <div class="gate-hint">Flag here only if your team has a functional (not personal health) requirement — e.g. a specialist workstation configuration required by the role itself, not by an individual's medical need.</div>
         <div class="gate-options">
           <button class="gate-btn" id="s7-yes" onclick="setGate('s7', 'yes')">✓ Yes, covered by standard</button>
           <button class="gate-btn" id="s7-no" onclick="setGate('s7', 'no')">✗ No, we have exceptions</button>
         </div>
         <div class="no-exception-banner" id="s7-noexception">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Great — no exception needed. The standard applies to your team.
+          Great — no exception needed. The NXP standard applies to your team.
         </div>
         <div class="exception-form" id="s7-form">
           <div class="exception-alert">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-            Do not include personal health information. Describe only functional, role-level needs (e.g. equipment used for a specific job task, not a medical accommodation).
+            Do not include personal health information. Describe only functional, role-level needs — e.g. workstation configurations required to operate specific equipment, not a medical accommodation.
           </div>
           <div class="form-group">
             <label class="form-label">Describe the ergonomic or accessibility exception <span class="required">*</span></label>
-            <textarea class="form-textarea" id="s7-desc" placeholder="e.g. Staff in our imaging review role spend 6+ hours reviewing high-resolution scans and require a monitor arm rated for 34&quot; curved monitors — standard desk mounts won't support this." oninput="autosave()"></textarea>
+            <textarea class="form-textarea" id="s7-desc" placeholder="e.g. Employees in our board inspection role spend 6+ hours using a microscope station that requires a fixed-height non-adjustable bench with specific clearance underneath for the instrument stand. Standard sit-stand desks cannot accommodate this hardware." oninput="autosave()"></textarea>
           </div>
           <div class="form-grid-2">
             <div class="form-group">
@@ -1442,16 +1481,17 @@
         <ul class="standard-bullets">
           <li>Is the need covered by any of the 7 topics above? If so, please go back and add it there.</li>
           <li>Is it a personal preference rather than a functional requirement? Preferences are noted but may not be actioned.</li>
-          <li>Does it relate to an individual health accommodation? If so, please use Employee Health instead.</li>
+          <li>Does it relate to an individual health accommodation? If so, please use NXP's occupational health team instead.</li>
           <li>Functional requirements are things directly tied to <em>how your team executes its work</em> — not comfort preferences or aesthetic choices.</li>
+          <li>Examples of valid "other" requirements: a dedicated laptop build / imaging room (IT), specialist lab or test equipment areas, plotter or large-format printing, display areas for product samples or demo hardware.</li>
         </ul>
       </div>
 
       <div class="exception-gate">
         <div class="gate-question">Does your team have any functional requirements not covered by the 7 topics above?</div>
         <div class="gate-options">
-          <button class="gate-btn" id="s8-yes" onclick="setGate('s8', 'yes')">✓ Yes, we have other requirements</button>
-          <button class="gate-btn" id="s8-no" onclick="setGate('s8', 'no')">✗ No, all covered above</button>
+          <button class="gate-btn" id="s8-no" onclick="setGate('s8', 'no')">✓ Yes, we have other requirements</button>
+          <button class="gate-btn" id="s8-yes" onclick="setGate('s8', 'yes')">✗ No, all covered above</button>
         </div>
         <div class="no-exception-banner" id="s8-noexception">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -1460,14 +1500,15 @@
         <div class="exception-form" id="s8-form">
           <div class="form-group">
             <label class="form-label">Describe the additional requirement <span class="required">*</span></label>
-            <textarea class="form-textarea" id="s8-desc" placeholder="e.g. Our team receives live specimen deliveries from the operating theatre that must be processed within 30 minutes. We need a dedicated wet lab bench with cold storage adjacent to our workspace — this is a clinical safety requirement." oninput="autosave()"></textarea>
+            <textarea class="form-textarea" id="s8-desc" placeholder="e.g. Our IT team requires a dedicated secure room (~20 sqm) to image, configure, and quality-check NXP-issued laptops before deployment. This requires a workbench, network switch access, and lockable storage for equipment awaiting deployment. This is a specialist area not covered under standard IT kit." oninput="autosave()"></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">Driver of this requirement</label>
             <select class="form-select" id="s8-driver" onchange="autosave()">
               <option value="">— Select one —</option>
               <option>Regulatory / legal requirement</option>
-              <option>Clinical or safety requirement</option>
+              <option>NXP operational / IT requirement</option>
+              <option>Customer or contractual requirement</option>
               <option>Operational need (not regulated)</option>
               <option>Team preference</option>
               <option>Unsure</option>
@@ -1491,13 +1532,13 @@
       <div class="panel-header">
         <div class="panel-tag">Final step</div>
         <h1 class="panel-title">Your submission summary</h1>
-        <p class="panel-description">Review your responses below. Only topics where you flagged an exception will be sent to the project team for review. Topics marked "standard" require no further action.</p>
+        <p class="panel-description">Review your responses below. Only topics where you flagged an exception will be sent to the Austin_Next project team for review. Topics marked "standard" require no further action.</p>
       </div>
 
       <div id="summary-content"></div>
 
       <button class="submit-btn" onclick="submitForm()">
-        Submit to project team →
+        Submit to Austin_Next project team →
       </button>
 
       <div class="export-row">
@@ -1522,7 +1563,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
       </div>
       <h2>Submitted — thank you.</h2>
-      <p>Your responses have been compiled and are ready for the project team.<br>You'll hear back if any of your flagged exceptions need further discussion.</p>
+      <p>Your responses have been compiled and are ready for the Austin_Next project team.<br>You'll hear back if any of your flagged exceptions need further discussion.</p>
       <div class="export-row" style="margin-top:32px;">
         <button class="btn btn-outline" onclick="exportText()">Download your summary</button>
         <button class="btn btn-outline" onclick="window.print()">Print / save as PDF</button>
@@ -1591,8 +1632,8 @@ function updateSidebarNum(topic) {
   const num = document.getElementById('n-' + topic);
   if (!num) return;
   const gate = state.gates[topic];
-  if (gate === 'yes') { num.textContent = '✓'; num.style.background = 'rgba(200,169,110,0.8)'; }
-  else if (gate === 'no') { num.textContent = '!'; num.style.background = '#B85042'; }
+  if (gate === 'yes') { num.textContent = '✓'; num.style.background = 'rgba(255,102,0,0.8)'; }
+  else if (gate === 'no') { num.textContent = '!'; num.style.background = '#C0392B'; }
   else { num.textContent = topic.replace('s',''); num.style.background = ''; }
 }
 
@@ -1602,7 +1643,7 @@ function completeSection(section) {
   if (section !== 'group') updateSidebarNum(section);
   if (section === 'group') {
     const gNum = document.getElementById('n-group');
-    if (gNum) { gNum.textContent = '✓'; gNum.style.background = 'rgba(200,169,110,0.8)'; }
+    if (gNum) { gNum.textContent = '✓'; gNum.style.background = 'rgba(255,102,0,0.8)'; }
   }
 }
 
@@ -1615,7 +1656,7 @@ function updateProgress() {
 }
 
 const ALL_FIELDS = [
-  'g-dept','g-role','g-location','g-headcount','g-setup','g-split','g-nolaptop',
+  'g-dept','g-role','g-location','g-headcount','g-setup','g-split',
   's1-desc','s1-vol','s1-people','s1-space','s1-driver',
   's2-desc','s2-type','s2-vol','s2-freq','s2-security','s2-driver',
   's3-desc','s3-people','s3-driver','s3-it',
@@ -1625,7 +1666,7 @@ const ALL_FIELDS = [
   's7-desc','s7-people','s7-confirm',
   's8-desc','s8-driver','s8-people'
 ];
-const STORAGE_KEY = 'wft_special_req_v1';
+const STORAGE_KEY = 'nxp_austin_special_req_v1';
 let autosaveTimer = null;
 
 function autosave() {
@@ -1655,7 +1696,7 @@ function restoreProgress() {
   if (saved.completed) {
     saved.completed.forEach(s => {
       state.completed.add(s);
-      if (s === 'group') { const n = document.getElementById('n-group'); if (n) { n.textContent = '\u2713'; n.style.background = 'rgba(200,169,110,0.8)'; } }
+      if (s === 'group') { const n = document.getElementById('n-group'); if (n) { n.textContent = '\u2713'; n.style.background = 'rgba(255,102,0,0.8)'; } }
       else updateSidebarNum(s);
     });
     updateProgress();
@@ -1726,7 +1767,6 @@ function buildSummary() {
       ${summaryField('Headcount', val('g-headcount'))}
       ${summaryField('Current setup', val('g-setup'))}
       ${summaryField('Time split', val('g-split'))}
-      ${summaryField('Staff without laptops', val('g-nolaptop'))}
     </div>
   </div>`;
 
@@ -1761,7 +1801,7 @@ function buildExceptionSummary(t) {
   const maps = {
     s1: [['Description', `${t}-desc`], ['Volume / frequency', `${t}-vol`], ['People affected', `${t}-people`], ['Space / equipment needed', `${t}-space`], ['Driver', `${t}-driver`]],
     s2: [['Description', `${t}-desc`], ['Storage type', `${t}-type`], ['Volume', `${t}-vol`], ['Access frequency', `${t}-freq`], ['Security requirements', `${t}-security`], ['Driver', `${t}-driver`]],
-    s3: [['Description', `${t}-desc`], ['People affected', `${t}-people`], ['Driver', `${t}-driver`], ['IT contacts / approvals', `${t}-it`]],
+    s3: [['Description', `${t}-desc`], ['People affected', `${t}-people`], ['Driver', `${t}-driver`], ['NXP IT contacts / approvals', `${t}-it`]],
     s4: [['Description', `${t}-desc`], ['Regulatory basis', `${t}-reg`], ['Adjacency restrictions', `${t}-adj`]],
     s5: [['Description', `${t}-desc`], ['Capacity needed', `${t}-cap`], ['Frequency', `${t}-freq`], ['AV / furniture', `${t}-av`], ['Dedicated or shared?', `${t}-ded`]],
     s6: [['Description', `${t}-desc`], ['Size required', `${t}-size`], ['Frequency', `${t}-freq`], ['Hybrid needed?', `${t}-hybrid`]],
@@ -1802,7 +1842,6 @@ async function submitForm() {
     headcount: val('g-headcount'),
     setup:     val('g-setup'),
     split:     val('g-split'),
-    nolaptop:  val('g-nolaptop'),
     s1_gate:   state.gates['s1'] || 'not answered',
     s1_desc:   val('s1-desc'),
     s1_vol:    val('s1-vol'),
@@ -1847,8 +1886,8 @@ async function submitForm() {
 
 function exportText() {
   const topics = ['s1','s2','s3','s4','s5','s6','s7','s8'];
-  let text = `WORKPLACE SPECIAL REQUIREMENTS — DEEP DIVE SUBMISSION\n`;
-  text += `======================================================\n\n`;
+  let text = `NXP AUSTIN — SPECIAL REQUIREMENTS DEEP DIVE SUBMISSION\n`;
+  text += `=======================================================\n\n`;
   text += `Submitted: ${new Date().toLocaleDateString()}\n\n`;
 
   text += `GROUP INFORMATION\n-----------------\n`;
@@ -1857,15 +1896,14 @@ function exportText() {
   text += `Location: ${val('g-location')}\n`;
   text += `Headcount: ${val('g-headcount')}\n`;
   text += `Current setup: ${val('g-setup')}\n`;
-  text += `Time split: ${val('g-split')}\n`;
-  text += `Staff without laptops: ${val('g-nolaptop')}\n\n`;
+  text += `Time split: ${val('g-split')}\n\n`;
 
   text += `TOPIC RESPONSES\n---------------\n\n`;
   topics.forEach(t => {
     text += `${TOPIC_LABELS[t].toUpperCase()}\n`;
     const gate = state.gates[t];
     if (gate === 'yes' || !gate) {
-      text += `Status: ${gate === 'yes' ? 'Standard solution applies — no exception' : 'Not answered'}\n\n`;
+      text += `Status: ${gate === 'yes' ? 'NXP standard solution applies — no exception' : 'Not answered'}\n\n`;
     } else {
       text += `Status: EXCEPTION FLAGGED\n`;
       text += `Description: ${val(t + '-desc')}\n`;
@@ -1879,7 +1917,7 @@ function exportText() {
   const blob = new Blob([text], { type: 'text/plain' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `special-requirements-${(val('g-dept') || 'team').replace(/\s+/g,'-')}.txt`;
+  a.download = `nxp-austin-special-requirements-${(val('g-dept') || 'team').replace(/\s+/g,'-').toLowerCase()}.txt`;
   a.click();
 }
 </script>
